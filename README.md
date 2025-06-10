@@ -26,10 +26,3 @@ Make sure these paths correctly point to your NiuTrans decoder and configuration
 
    The server runs at http://127.0.0.1:5000 by default.
 
-## API Endpoints
-
-- **/translate** (POST): Translates text
-  - Request: `{"text": "text to translate"}`
-  - Response: `{"translation": "translated text", "log": "decoding log"}`
-
-- **/get_decoding_log** (GET): Gets latest decoding log
