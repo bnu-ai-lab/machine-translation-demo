@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NiuTrans 翻译可视化</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 使用Bootstrap提供基础UI组件 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <header class="mb-5 text-center">
+            <h1>NiuTrans 机器翻译可视化</h1>
+            <p class="text-muted">输入文本，查看翻译结果及解码过程</p>
+        </header>
+
+        <main>
+            <!-- 输入区域 -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">输入文本</h5>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <textarea id="sourceText" class="form-control" rows="5" placeholder="请输入要翻译的文本..."></textarea>
+                    </div>
+                    <div class="mt-3 text-center">
+                        <button id="translateBtn" class="btn btn-primary btn-lg px-5">翻译</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 结果区域 -->
+            <div id="resultContainer" class="card mb-4 d-none">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">翻译结果</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>原文:</h6>
+                            <div id="originalText" class="p-3 border rounded bg-light"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>译文:</h6>
+                            <div id="translatedText" class="p-3 border rounded bg-light"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 解码可视化区域 -->
+            <div id="decodingVisualization" class="card mb-4 d-none">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">解码过程可视化</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted mb-3">下方展示了短语级别的翻译对应关系</p>
+                    
+                    <div class="row align-items-center mb-3">
+                        <!-- 源文本可视化 -->
+                        <div class="col-md-6">
+                            <h6>源语言文本:</h6>
+                            <div id="sourceVisualization" class="p-3 border rounded visualization-container">
+                                <!-- 源文本将在这里以高亮形式显示 -->
+                            </div>
+                        </div>
+                        
+                        <!-- 目标文本可视化 -->
+                        <div class="col-md-6">
+                            <h6>目标语言文本:</h6>
+                            <div id="targetVisualization" class="p-3 border rounded visualization-container">
+                                <!-- 目标文本将在这里以高亮形式显示 -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 解码日志表格 -->
+                    <div class="mt-4">
+                        <h6>解码日志详情:</h6>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>源文本位置</th>
+                                        <th>源短语</th>
+                                        <th>目标短语</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="decodingLogTable">
+                                    <!-- 解码日志将被动态添加到这里 -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 加载提示 -->
+            <div id="loadingIndicator" class="text-center d-none">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">加载中...</span>
+                </div>
+                <p class="mt-2">正在处理，请稍候...</p>
+            </div>
+        </main>
+
+        <footer class="mt-5 text-center text-muted">
+            <p>基于 NiuTrans.SMT 机器翻译系统</p>
+        </footer>
+    </div>
+
+    <!-- 引入JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+/* Main styles for NiuTrans Translation Visualization */
+
+/* 全局样式 */
+body {
+    font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* 标题样式 */
+header h1 {
+    color: #0d6efd;
+    font-weight: bold;
+}
+
+/* 卡片样式增强 */
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    border-top-left-radius: 0.5rem !important;
+    border-top-right-radius: 0.5rem !important;
+}
+
+/* 可视化容器样式 */
+.visualization-container {
+    min-height: 100px;
+    max-height: 300px;
+    overflow-y: auto;
+    line-height: 1.8;
+    word-break: break-all;
+}
+
+/* 高亮文本样式 */
+.highlight-text {
+    display: inline-block;
+    padding: 0 2px;
+    margin: 0 2px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* 不同的高亮颜色 */
+.highlight-color-0 { background-color: #ffadad; }
+.highlight-color-1 { background-color: #ffd6a5; }
+.highlight-color-2 { background-color: #fdffb6; }
+.highlight-color-3 { background-color: #caffbf; }
+.highlight-color-4 { background-color: #9bf6ff; }
+.highlight-color-5 { background-color: #a0c4ff; }
+.highlight-color-6 { background-color: #bdb2ff; }
+.highlight-color-7 { background-color: #ffc6ff; }
+.highlight-color-8 { background-color: #fffffc; }
+.highlight-color-9 { background-color: #ffd8be; }
+
+/* 多重匹配的高亮样式 */
+.multi-match {
+    position: relative;
+    border: 2px dashed rgba(0, 0, 0, 0.3) !important;
+    font-weight: 500;
+}
+
+.multi-match:hover {
+    border: 2px dashed #333 !important;
+}
+
+/* 高亮活动状态 */
+.highlight-text.active,
+.source-word.active {
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.5);
+    font-weight: bold;
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+/* 表格行活动状态 */
+#decodingLogTable tr.active {
+    background-color: rgba(13, 110, 253, 0.1) !important;
+    font-weight: bold;
+}
+
+/* 目标短语容器样式 */
+.target-phrase-container {
+    display: inline-block;
+    margin: 0 2px;
+    padding: 2px 0;
+    border-radius: 3px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+/* 过渡动画 */
+.fade-in {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 表格样式调整 */
+.table-responsive {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* 美化滚动条 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
