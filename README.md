@@ -6,8 +6,8 @@ Backend service for NiuTrans.SMT machine translation with API endpoints.
 
 The following paths are configured in `app.py`:
 ```python
-NIUTRANS_DECODER_PATH = "../../bin/NiuTrans.Decoder"
-NIUTRANS_CONFIG_PATH = "../../work/config/NiuTrans.phrase.user.config"
+NIUTRANS_DECODER_PATH = "../bin/NiuTrans.Decoder"
+NIUTRANS_CONFIG_PATH = "../work/config/NiuTrans.phrase.user.config"
 ```
 
 Make sure these paths correctly point to your NiuTrans decoder and configuration files.
