@@ -10,9 +10,9 @@ app = Flask(__name__)
 CORS(app)  # 启用CORS，允许所有域的跨域请求
 
 # --- Configuration for NiuTrans ---
-NIUTRANS_DECODER_PATH = "../bin/NiuTrans.Decoder"
-NIUTRANS_CONFIG_PATH = "../work/config/NiuTrans.phrase.user.config"
-TEMP_DIR = "./tmp/niutrans_temp" # A temporary directory for input/output files
+NIUTRANS_DECODER_PATH = "../../bin/NiuTrans.Decoder"
+NIUTRANS_CONFIG_PATH = "../../work/config/NiuTrans.phrase.user.config"
+TEMP_DIR = "./niutrans_temp" # A temporary directory for input/output files
 
 # Create the temporary directory if it doesn't exist
 os.makedirs(TEMP_DIR, exist_ok=True)
@@ -47,16 +47,31 @@ def translate_text():
         with open(input_file, 'w', encoding='utf-8') as f:
             f.write(source_text)
 
-        # 2. 构建NiuTrans命令
+        # 2. 构建NiuTrans命令 - 使用cwd和相对路径
+        # 获取解码器的绝对路径和所在目录
+        decoder_abs_path = os.path.abspath(NIUTRANS_DECODER_PATH)
+        decoder_directory = os.path.dirname(decoder_abs_path)
+        decoder_filename = os.path.basename(decoder_abs_path)
+        
+        # 由于将工作目录设置为decoder_directory，需要将其他文件路径调整为相对于decoder_directory的路径
+        # 首先获取绝对路径
+        config_abs_path = os.path.abspath(NIUTRANS_CONFIG_PATH)
+        input_abs_path = os.path.abspath(input_file)
+        output_abs_path = os.path.abspath(output_file)
+        
+        # 构建命令，使用相对路径或绝对路径
         command = [
-            NIUTRANS_DECODER_PATH,
-            "-decoding", input_file,
-            "-config", NIUTRANS_CONFIG_PATH,
-            "-output", output_file,
+            "./" + decoder_filename,  # 使用相对路径，因为cwd被设置为decoder_directory
+            "-decoding", input_abs_path,  # 这些文件在其他目录，仍然使用绝对路径
+            "-config", config_abs_path,
+            "-output", output_abs_path,
             "-outputoov", "1",
             "-nbest", "1",
             "-nthread", "4"
         ]
+        
+        print(f"Decoder directory: {decoder_directory}")
+        print(f"Decoder filename: {decoder_filename}")
 
         print(f"Executing command: {' '.join(command)}")
 
@@ -66,7 +81,8 @@ def translate_text():
                 command,
                 capture_output=True,
                 text=True,
-                check=True
+                check=True,
+                cwd=decoder_directory  # 设置工作目录为解码器所在目录
             )
             print("NiuTrans STDOUT:", result.stdout)
             print("NiuTrans STDERR:", result.stderr)
@@ -118,8 +134,7 @@ def translate_text():
         if os.path.exists(output_file):
             os.remove(output_file)
 
-# 使用绝对路径指定解码日志文件
-DECODING_LOG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "decoding.log.txt")
+DECODING_LOG_FILE = os.path.join(os.path.dirname(os.path.abspath(NIUTRANS_DECODER_PATH)), "decoding.log.txt")
 
 @app.route('/decoding_log', methods=['GET'])
 def get_decoding_log_data():
