@@ -10,8 +10,8 @@ app = Flask(__name__)
 CORS(app)  # 启用CORS，允许所有域的跨域请求
 
 # --- Configuration for NiuTrans ---
-NIUTRANS_DECODER_PATH = "../../bin/NiuTrans.Decoder"
-NIUTRANS_CONFIG_PATH = "../../work/config/NiuTrans.phrase.user.config"
+NIUTRANS_DECODER_PATH = "../bin/NiuTrans.Decoder"
+NIUTRANS_CONFIG_PATH = "../work/config/NiuTrans.phrase.user.config"
 TEMP_DIR = "./tmp/niutrans_temp" # A temporary directory for input/output files
 
 # Create the temporary directory if it doesn't exist
