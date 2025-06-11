@@ -30,7 +30,7 @@ export NIUTRANS_CONFIG_PATH="$CONFIG_PATH"
 echo "Starting backend server..."
 cd backend
 pip install -r requirements.txt
-python app.py &
+python app.py > >(tee /dev/tty) 2>&1 &
 BACKEND_PID=$!
 
 # Wait for backend to start
@@ -39,7 +39,7 @@ sleep 3
 # Start frontend server
 echo "Starting frontend server..."
 cd ../frontend
-python -m http.server 8000 &
+python -m http.server 8000 --bind 0.0.0.0 &
 FRONTEND_PID=$!
 
 # Get IP address

@@ -1,6 +1,6 @@
 // 全局变量 - 配置远程服务器URL
 // 请将以下地址替换为您的远程服务器地址和端口
-const API_BASE_URL = 'http://127.0.0.1:5000'; // 如: 'http://192.168.1.100:5000' 或 'http://api.example.com'
+const API_BASE_URL = 'http://127.0.0.1:5000';
 let currentLogData = []; // 当前解码日志数据
 let tokenizedSource = []; // 分词后的源语言文本
 let tokenizedTarget = []; // 分词后的目标语言文本
