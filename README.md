@@ -11,7 +11,6 @@ Use the provided `run.sh` script to start both frontend and backend services:
 # Or specify custom paths for NiuTrans
 ./run.sh --decoder /path/to/NiuTrans.Decoder --config /path/to/config/file
 ```
-
 After running the script:
 - Backend will be available at: http://ip_address:5000
 - Frontend will be available at: http://ip_address:8000
