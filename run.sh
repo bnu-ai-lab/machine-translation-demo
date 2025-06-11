@@ -27,30 +27,21 @@ export NIUTRANS_DECODER_PATH="$DECODER_PATH"
 export NIUTRANS_CONFIG_PATH="$CONFIG_PATH"
 
 # Start backend server
-echo "Starting backend server..."
+echo "Starting server..."
 cd backend
 pip install -r requirements.txt
 python app.py > >(tee /dev/tty) 2>&1 &
-BACKEND_PID=$!
-
-# Wait for backend to start
-sleep 3
-
-# Start frontend server
-echo "Starting frontend server..."
-cd ../frontend
-python -m http.server 8000 --bind 0.0.0.0 &
-FRONTEND_PID=$!
+SERVER_PID=$!
 
 # Get IP address
 IP_ADDR=$(hostname -I | awk '{print $1}')
 
 echo "Services started:"
-echo "Frontend running at: http://${IP_ADDR}:8000"
+echo "Server running at: http://${IP_ADDR}:5000"
 echo "Press Ctrl+C to stop all services"
 
 # Handle shutdown gracefully
-trap "kill $BACKEND_PID $FRONTEND_PID; exit" INT TERM
+trap "kill $SERVER_PID; exit" INT TERM
 
-# Wait for both processes
-wait
+# Wait for the process
+wait $SERVER_PID

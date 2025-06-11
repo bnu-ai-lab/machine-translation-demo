@@ -1,6 +1,6 @@
-// 全局变量 - 配置远程服务器URL
-// 请将以下地址替换为您的远程服务器地址和端口
-const API_BASE_URL = 'http://127.0.0.1:5000';
+// 全局变量 - 配置服务器URL (使用相对路径)
+// 当前后端部署在同一域名和端口时，使用相对路径避免跨域问题
+const API_BASE_URL = '';
 let currentLogData = []; // 当前解码日志数据
 let tokenizedSource = []; // 分词后的源语言文本
 let tokenizedTarget = []; // 分词后的目标语言文本
