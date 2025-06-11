@@ -12,7 +12,8 @@ Use the provided `run.sh` script to start both frontend and backend services:
 ./run.sh --decoder /path/to/NiuTrans.Decoder --config /path/to/config/file
 ```
 After running the script:
-- Backend will be available at: http://ip_address:5000
-- Frontend will be available at: http://ip_address:8000
+- The service will be available at: http://`ip_address`:5000
+
+Attention: `ip_address` is your Aliyun public IP address
 
 Press Ctrl+C to stop all services.
